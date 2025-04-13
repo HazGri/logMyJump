@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth"; // Ton instance better-auth
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma"
-import { headers } from "next/headers"; // Ton client Prisma
+import { headers } from "next/headers"; 
 
 export async function POST(req: Request) {
   const session = await auth.api.getSession({
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         location: body.location,
         country: body.country,
         note: body.note || "",
-        userId: session.user.id, // 🔗 association avec l'utilisateur connecté
+        userId: session.user.id, 
       },
     });
 

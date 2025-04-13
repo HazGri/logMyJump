@@ -1,9 +1,9 @@
-"use client";
 
 import Link from "next/link";
 import { Footer } from "../components/Footer";
 import Image from "next/image";
 import { CardStat } from "../components/CardStat";
+import { JumpList } from "../components/JumpList";
 
 export default function Home() {
   return (
@@ -47,6 +47,7 @@ export default function Home() {
           Ajouter un saut
         </Link>
         <p className="text-lg ml-4">Mes derniers sauts</p>
+        <JumpList />
       </div>
       <Footer />
     </div>
