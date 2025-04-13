@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./node_modules/@prisma/client"
 }
 
 datasource db {
@@ -23,6 +24,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  jumps         Jump[]
 
   @@unique([email])
   @@map("user")
@@ -71,4 +73,18 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Jump {
+  id        String   @id @default(uuid())
+  date      DateTime
+  aircraft  String
+  altitude  Int
+  jumpType  String
+  location  String
+  country   String
+  note      String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }

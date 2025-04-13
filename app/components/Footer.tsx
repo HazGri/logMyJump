@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <div className="flex justify-around m-6">
-      <Link href={"/"}>
+    <div className="flex justify-around mb-10">
+      <Link href={"/dashboard"}>
         <Image width={30} height={30} src="/img/home.svg" alt="home icone" />
       </Link>
       <Link href={"/"}>
