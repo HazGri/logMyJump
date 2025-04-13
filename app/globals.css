@@ -1,5 +1,15 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
+/* 1. Déclare la font-face AVANT toute utilisation */
+@font-face {
+  font-family: "ArialRounded";
+  src: url("/fonts/arialroundedmtbold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. Variables globales */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,10 +18,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-test: "Arial", Helvetica, sans-serif;
+  --font-sans: "ArialRounded", Helvetica, sans-serif; /* <-- ici ! */
   --font-mono: var(--font-geist-mono);
 }
 
+/* 3. Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +31,19 @@
   }
 }
 
+/* 4. Application à body */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(10px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(4deg);
+  }
 }
