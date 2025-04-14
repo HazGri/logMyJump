@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Footer } from "../../../../../components/Footer";
+import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
 
 type FriendRequest = {
