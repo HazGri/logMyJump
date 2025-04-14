@@ -4,8 +4,9 @@ type CardStatProps = {
   imgSrc: string;
   imgAlt: string;
   cardTitle: string;
-  cardData: number;
+  cardData: number | string; // <- ici
 };
+
 export const CardStat = ({ imgSrc, imgAlt, cardTitle, cardData }: CardStatProps) => {
   return (
     <div className="w-[140px] h-[115px] bg-white rounded-lg flex flex-col justify-center items-center gap-2">

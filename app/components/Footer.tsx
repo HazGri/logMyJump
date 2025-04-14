@@ -10,7 +10,7 @@ export const Footer = () => {
       <Link href={"/"}>
         <Image width={30} height={30} src="/img/hubot.svg" alt="chatbot icone" />
       </Link>
-      <Link href={"/"}>
+      <Link href={"/userProfile"}>
         <Image width={30} height={30} src="/img/profile.svg" alt="profil icone" />
       </Link>
     </div>
