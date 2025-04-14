@@ -34,6 +34,8 @@ export const SignUpForm = () => {
         },
       }
     );
+    console.log("SignIn data:", data);
+    console.log("SignIn error:", error);
   };
 
   return (
