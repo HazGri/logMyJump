@@ -31,7 +31,7 @@ export default function Home() {
         </div>
       </div>
       <UserProfileInfo />
-      <div className="fixed top-110 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
+      <div className="fixed bottom-50 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
         <Link href={"/profileForm"} className="btn btn-warning">Modifier le profil</Link>
         <button onClick={handleSignOut} className="btn btn-error">
           Se déconnecter
