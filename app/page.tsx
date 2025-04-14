@@ -7,7 +7,7 @@ import { FacebookBtn } from "./components/FacebookBtn";
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-100 max-w-md mx-auto">
-      <div className="flex justify-center items-center text-white shadow-xl bg-[#50ADCE] text-[48px]  w-full h-[135px]">
+      <div className="flex justify-center items-center text-white shadow-xl/20 bg-[#50ADCE] text-[48px]  w-full h-[135px]">
         LogMyJump
       </div>
       <Image
@@ -17,10 +17,33 @@ export default function Home() {
         alt="image d'un parachutiste"
         className="animate-[float_3s_ease-in-out_infinite] mx-auto my-14"
       />
+
       <div className="flex flex-col items-center gap-4 justify-center mt-28">
-        <GoogleBtn/>
-        <FacebookBtn/>
-        <Link href="/emailSignIn" className="font-test text-blue-700">
+        <GoogleBtn />
+        <FacebookBtn />
+
+        <Link
+          href={"/emailSignIn"}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
+          <svg
+            aria-label="Email icon"
+            width="16"
+            height="16"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              stroke="black"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </g>
+          </svg>
           Se connecter avec l&apos;email
         </Link>
         <Link href="/emailSignUp" className="font-test text-sm  text-blue-700">

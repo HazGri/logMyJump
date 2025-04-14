@@ -7,8 +7,8 @@ export const Footer = () => {
 <Link href={"/dashboard"}>
         <Image width={30} height={30} src="/img/home.svg" alt="home icone" />
       </Link>
-      <Link href={"/"}>
-        <Image width={30} height={30} src="/img/hubot.svg" alt="chatbot icone" />
+      <Link href={"/leaderboard"}>
+        <Image width={30} height={30} src="/img/leaderboard.svg" alt="chatbot icone" />
       </Link>
       <Link href={"/userProfile"}>
         <Image width={30} height={30} src="/img/profile.svg" alt="profil icone" />

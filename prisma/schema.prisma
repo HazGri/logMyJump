@@ -25,6 +25,8 @@ model User {
   accounts      Account[]
   jumps         Jump[]
   profile       UserProfile?
+  sentFriendRequests      Friendship[]  @relation("Requesters")
+  receivedFriendRequests  Friendship[]  @relation("Receivers")
 
   @@unique([email])
   @@map("user")
@@ -98,4 +100,17 @@ model UserProfile {
   objectif   String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model Friendship {
+  id           String   @id @default(uuid())
+  requesterId  String
+  receiverId   String
+  status       String   @default("pending") // "pending", "accepted", "rejected"
+  createdAt    DateTime @default(now())
+
+  requester    User     @relation("Requesters", fields: [requesterId], references: [id], onDelete: Cascade)
+  receiver     User     @relation("Receivers", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, receiverId])
 }

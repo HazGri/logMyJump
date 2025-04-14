@@ -55,7 +55,7 @@ export const JumpForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-md gap-2 items-center font-test"
+      className="flex flex-col gap-2 items-center font-test"
     >
       {showToast && (
         <div className="toast toast-center toast-middle z-50">

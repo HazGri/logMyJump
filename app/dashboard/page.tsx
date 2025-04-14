@@ -7,7 +7,7 @@ import { JumpStats } from "../components/JumpStats";
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-100 max-w-md mx-auto flex flex-col">
-      <div className="text-white shadow-xl bg-[#50ADCE]  w-full h-[135px] flex justify-center">
+      <div className="text-white shadow-xl/20 bg-[#50ADCE]  w-full h-[135px] flex justify-center">
         <div className="flex justify-center items-center ">
           <Image
             width={60}
