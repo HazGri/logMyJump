@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @plugin "daisyui";
 
 /* 1. Déclare la font-face AVANT toute utilisation */
