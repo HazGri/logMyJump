@@ -77,7 +77,7 @@ export default function Home() {
         )}
       </main>
 
-      <div className="fixed bottom-50 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
+      <div className="fixed bottom-30 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
         <Link href={"/addFriend"} className="btn btn-accent">
           Ajouter un ami
         </Link>
