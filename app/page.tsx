@@ -21,6 +21,11 @@ export default function Home() {
       <div className="flex flex-col items-center gap-4 justify-center mt-28">
         <GoogleBtn />
         <FacebookBtn />
+        <div className="flex items-center w-100 px-6 gap-4 my-4">
+          <div className="flex-grow h-[1px] bg-gray-300" />
+          <span className="text-md text-gray-500 leading-none pb-1">ou</span>
+          <div className="flex-grow h-[1px] bg-gray-300" />
+        </div>
 
         <Link
           href={"/emailSignIn"}
