@@ -11,6 +11,8 @@ export default function Home() {
     { id: string; name: string; jumpCount: number }[]
   >([]);
 
+  const [sessionUserId, setSessionUserId] = useState(""); // Ajout sessionUserId
+
   useEffect(() => {
     const fetchPending = async () => {
       try {
@@ -26,7 +28,9 @@ export default function Home() {
       try {
         const res = await fetch("/api/friends/leaderboard");
         const data = await res.json();
-        setLeaderboard(data);
+
+        setLeaderboard(data.leaderboard);
+        setSessionUserId(data.sessionUserId); // récupérer l'id utilisateur connecté
       } catch (err) {
         console.error("Erreur chargement leaderboard :", err);
       }
@@ -37,9 +41,9 @@ export default function Home() {
   }, []);
 
   const getMedalClass = (index: number) => {
-    if (index === 0) return "bg-yellow-300"; // or gold
-    if (index === 1) return "bg-gray-300"; // or silver
-    if (index === 2) return "bg-orange-300"; // or bronze
+    if (index === 0) return "bg-yellow-300";
+    if (index === 1) return "bg-gray-300";
+    if (index === 2) return "bg-orange-300";
     return "bg-white";
   };
 
@@ -61,30 +65,32 @@ export default function Home() {
         {leaderboard.length === 0 ? (
           <p className="text-center text-gray-500">Aucun ami pour le moment.</p>
         ) : (
-          leaderboard
-            .slice(0, 7) 
-            .map((user, i) => (
-              <div
-                key={user.id}
-                className={`p-3 rounded shadow flex justify-between items-center ${getMedalClass(
-                  i
-                )}`}
-              >
-                <span className="font-semibold">{user.name}</span>
-                <span>{user.jumpCount} sauts</span>
-              </div>
-            ))
+          leaderboard.slice(0, 7).map((user, i) => (
+            <div
+              key={user.id}
+              className={`p-3 rounded shadow flex justify-between items-center ${getMedalClass(
+                i
+              )} ${
+                user.id === sessionUserId ? "border-4 border-blue-300" : ""
+              }`}
+            >
+              <span className="font-semibold">
+                {user.name} {user.id === sessionUserId && "(Moi)"}
+              </span>
+              <span>{user.jumpCount} sauts</span>
+            </div>
+          ))
         )}
       </main>
 
       <div className="fixed bottom-30 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
-        <Link href={"/addFriend"} className="btn btn-accent">
+        <Link href="/addFriend" className="btn btn-accent">
           Ajouter un ami
         </Link>
-        <Link href={"/friendRequest"} className="btn btn-warning">
+        <Link href="/friendRequest" className="btn btn-warning">
           Demandes en attente : {pendingCount}
         </Link>
-        <Link href={"/friendList"} className="btn btn-info">
+        <Link href="/friendList" className="btn btn-info">
           SkyBuddies
         </Link>
       </div>
