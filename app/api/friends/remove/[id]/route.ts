@@ -3,10 +3,8 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function DELETE(req: NextRequest, context: any) {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session?.user?.id) {
