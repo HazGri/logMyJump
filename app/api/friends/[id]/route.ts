@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function PUT(
   req: Request,
-  context: { params: { id: string } } // ✅ ici on utilise "context"
+  context: { params: Record<string, string> } // ✅ ici
 ) {
   const session = await auth.api.getSession({ headers: await headers() });
 
@@ -13,8 +13,8 @@ export async function PUT(
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
-  const { id } = context.params; // ✅ on accède à params via context
   const { action } = await req.json();
+  const id = context.params.id;
 
   if (!["accept", "reject"].includes(action)) {
     return NextResponse.json({ error: "Action invalide" }, { status: 400 });
