@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </div>
       <JumpStats />
-      <div className="flex flex-grow flex-col gap-6">
+      <div className="flex flex-col overflow-auto px-4 gap-6">
         <Link
           className="mx-auto w-10/12 h-9 bg-[#50ADCE] mt-5 rounded-lg text-white flex justify-center items-center"
           href={"/addJump"}
