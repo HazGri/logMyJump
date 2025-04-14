@@ -3,10 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function DELETE(req: Request, context: any) {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session?.user) {
@@ -16,7 +14,7 @@ export async function DELETE(
   try {
     const deleted = await prisma.jump.delete({
       where: {
-        id: params.id,
+        id: context.params.id,
         userId: session.user.id,
       },
     });
