@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GoogleBtn } from "./components/GoogleBtn";
-import { FacebookBtn } from "./components/FacebookBtn";
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-100 max-w-md mx-auto">
@@ -20,16 +19,9 @@ export default function Home() {
 
       <div className="flex flex-col items-center gap-4 justify-center mt-28">
         <GoogleBtn />
-        <FacebookBtn />
-        <div className="flex items-center w-100 px-6 gap-4 my-4">
-          <div className="flex-grow h-[1px] bg-gray-300" />
-          <span className="text-md text-gray-500 leading-none pb-1">ou</span>
-          <div className="flex-grow h-[1px] bg-gray-300" />
-        </div>
-
         <Link
           href={"/emailSignIn"}
-          className="btn bg-white text-black border-[#e5e5e5]"
+          className="btn bg-white text-black w-10/12  border-[#e5e5e5]"
         >
           <svg
             aria-label="Email icon"
@@ -51,6 +43,12 @@ export default function Home() {
           </svg>
           Se connecter avec l&apos;email
         </Link>
+        <div className="flex items-center w-100 px-6 gap-4 my-4">
+          <div className="flex-grow h-[1px] bg-gray-300" />
+          <span className="text-md text-gray-500 leading-none pb-1">ou</span>
+          <div className="flex-grow h-[1px] bg-gray-300" />
+        </div>
+
         <Link href="/emailSignUp" className="font-test text-sm  text-blue-700">
           Se créer un compte
         </Link>
