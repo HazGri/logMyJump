@@ -14,7 +14,7 @@ export default function Home() {
         height={300}
         width={300}
         alt="image d'un parachutiste"
-        className="animate-[float_3s_ease-in-out_infinite] mx-auto my-14"
+        className="animate-[floatZoom_3s_ease-in-out_infinite] rotate-350 mx-auto my-14"
       />
 
       <div className="flex flex-col items-center gap-4 justify-center mt-28">

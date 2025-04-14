@@ -41,11 +41,12 @@ export default function Home() {
   }, []);
 
   const getMedalClass = (index: number) => {
-    if (index === 0) return "bg-yellow-300";
-    if (index === 1) return "bg-gray-300";
-    if (index === 2) return "bg-orange-300";
+    if (index === 0) return "gold-medal";
+    if (index === 1) return "silver-medal";
+    if (index === 2) return "bronze-medal";
     return "bg-white";
   };
+  
 
   return (
     <div className="min-h-screen bg-neutral-100 max-w-md mx-auto relative pb-[150px]">
