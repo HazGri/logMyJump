@@ -32,7 +32,10 @@ export const SignInForm = () => {
         //callbacks
       }
     );
+    console.log("SignIn data:", data);
+    console.log("SignIn error:", error);
   };
+
   return (
     <form
       onSubmit={handleSubmit}
