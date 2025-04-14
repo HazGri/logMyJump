@@ -15,5 +15,5 @@ export async function middleware(request: Request) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/profile"], // les routes protégées
+  matcher: ["/dashboard", "/profile", "/leaderboard","userProfile","friendList"],
 };

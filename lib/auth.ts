@@ -4,7 +4,7 @@ import { prisma } from "./prisma";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
-    provider: "postgresql", // or "mysql", "postgresql", ...etc
+    provider: "postgresql", 
   }),
   emailAndPassword: {
     enabled: true,
@@ -17,7 +17,6 @@ export const auth = betterAuth({
     facebook: { 
       clientId: process.env.FACEBOOK_CLIENT_ID as string, 
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string, 
-      // Optional
       appBundleIdentifier: process.env.APPLE_APP_BUNDLE_IDENTIFIER as string, 
   }, 
   },
