@@ -62,7 +62,7 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="px-4 mt-6 space-y-2">
+      <main className="px-4 mt-6 space-y-2 h-[450px] overflow-y-scroll">
         {leaderboard.length === 0 ? (
           <p className="text-center text-gray-500">Aucun ami pour le moment.</p>
         ) : (
