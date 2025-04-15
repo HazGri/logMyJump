@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Log My Jump",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className="min-h-screen overflow-hidden antialiased">{children}</body>
+      <body className="min-h-screen overflow-hidden antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
