@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+type UserProfile = {
+  paraclub?: string;
+  brevets: string[];
+  objectif?: string;
+};
 
 export const ProfileForm = () => {
   const router = useRouter();
   const [paraclub, setParaclub] = useState("");
   const [objectif, setObjectif] = useState("");
   const [brevets, setBrevets] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const brevetOptions = [
     "PAC",
@@ -23,7 +30,24 @@ export const ProfileForm = () => {
     "Wingsuit Niveau 3",
     "Voilure Hybride",
   ];
-  
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch("/api/profile");
+        const data: UserProfile = await res.json();
+
+        setParaclub(data.paraclub || "");
+        setObjectif(data.objectif || "");
+        setBrevets(data.brevets || []);
+      } catch (err) {
+        console.error("Erreur de chargement du profil", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const handleBrevetChange = (brevet: string) => {
     setBrevets((prev) =>
@@ -50,6 +74,8 @@ export const ProfileForm = () => {
       alert("Erreur lors de l'enregistrement");
     }
   };
+
+  if (loading) return <p className="text-center py-10">Chargement du profil...</p>;
 
   return (
     <form onSubmit={handleSubmit} className="p-4 space-y-4">

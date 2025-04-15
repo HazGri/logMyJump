@@ -15,12 +15,9 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-neutral-100 max-w-md mx-auto flex flex-col">
-      {/* Header fixe */}
-      <div className="fixed top-0 left-0 w-full max-w-md mx-auto z-10 bg-[#50ADCE] text-white text-[48px] h-[135px] flex justify-center items-center shadow-xl">
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#50ADCE] text-white text-[48px] h-[135px] flex justify-center items-center shadow-xl z-10">
         LogMyJump
       </div>
-
-      {/* Contenu scrollable */}
       <div className="flex-1 mt-[135px] overflow-auto px-4 pb-10">
         <Image
           src="/img/parachute-svgrepo-com.svg"

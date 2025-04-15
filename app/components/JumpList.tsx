@@ -23,12 +23,15 @@ export const JumpList = async () => {
   }
 
   return (
-<div className="
-  h-[200px] 
-  [@media(min-height:800px)]:h-[350px] 
-  [@media(min-height:870px)]:h-[450px] 
-  overflow-scroll space-y-4
-">
+<div
+  className="
+    h-[200px]
+    [@media(min-height:740px)]:h-[280px]     
+    [@media(min-height:800px)]:h-[350px]
+    [@media(min-height:870px)]:h-[450px]
+    overflow-scroll space-y-4
+  "
+>
   {jumps.map((jump) => (
     <JumpCard key={jump.id} jump={jump} />
   ))}
