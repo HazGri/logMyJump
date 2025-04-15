@@ -44,7 +44,7 @@ export const JumpCard = ({ jump }: { jump: Jump }) => {
           <div className="relative">
             <span className="group cursor-default text-md px-6 inline-block">
               📝
-              <div className="absolute z-10 right-0 bottom-full mb-2 max-w-[200px] break-words bg-gray-100 text-gray-700 text-xs p-2 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              <div className="absolute z-10 right-0 bottom-full mb-2 max-w-[200px] break-words bg-gray-100 text-gray-700 text-xs p-2 rounded shadow-md opacity-0 group-active:opacity-100 transition-opacity duration-200 pointer-events-none">
                 {jump.note}
               </div>
             </span>
