@@ -74,12 +74,14 @@ export default function Home() {
               key={friend.id}
               className="bg-white rounded shadow p-4 relative"
             >
-              <button
+              <Image
                 onClick={() => removeFriend(friend.friendshipId)}
-                className="btn w-2 h-4 absolute top-2 right-2 text-xs text-red-600 hover:underline"
-              >
-                ❌
-              </button>
+                className="cursor-pointer absolute top-2 right-2"
+                width={15}
+                height={15}
+                alt="logo croix"
+                src={"/img/close.svg"}
+              />
 
               <p className="font-bold">{friend.name}</p>
               <p className="text-sm text-gray-700">
