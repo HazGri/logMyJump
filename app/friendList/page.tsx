@@ -27,7 +27,7 @@ export default function Page() {
   };
 
   const removeFriend = async (friendshipId: string) => {
-    const confirmDelete = confirm("Remove this pilot from squadron?");
+    const confirmDelete = confirm("Supprimer cet ami de ton escadrille ?");
     if (!confirmDelete) return;
 
     try {
@@ -55,14 +55,14 @@ export default function Page() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-10 bg-cyan" />
-              <span className="eyebrow">Squadron · pilot roster</span>
+              <span className="eyebrow">Escadrille · mes amis</span>
             </div>
             <h1 className="font-display text-4xl lg:text-5xl leading-none">
               Sky
               <span className="font-serif italic normal-case text-cyan lowercase"> buddies</span>
             </h1>
           </div>
-          <Link href="/addFriend" className="btn-ghost-phos self-start">+ Recruit a pilot</Link>
+          <Link href="/addFriend" className="btn-ghost-phos self-start">+ Ajouter un ami</Link>
         </div>
 
         {friends.length === 0 ? (
@@ -70,7 +70,7 @@ export default function Page() {
             <span className="hud-tl" />
             <span className="hud-br" />
             <p className="font-serif italic text-xl text-bone-dim">
-              The squadron is empty. Invite someone to formation.
+              Escadrille vide. Invite quelqu&rsquo;un à te rejoindre.
             </p>
           </div>
         ) : (
@@ -83,8 +83,8 @@ export default function Page() {
                 <button
                   onClick={() => removeFriend(friend.friendshipId)}
                   className="absolute top-3 right-3 h-7 w-7 flex items-center justify-center text-bone-faint hover:text-[color:var(--vermillon)] border border-[color:var(--hairline-strong)] hover:border-[color:var(--vermillon)]"
-                  aria-label="Remove pilot"
-                  title="Remove pilot"
+                  aria-label="Supprimer l'ami"
+                  title="Supprimer l'ami"
                 >
                   <svg width="10" height="10" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.6">
                     <path d="M3 3l10 10M13 3L3 13" />
@@ -93,13 +93,13 @@ export default function Page() {
 
                 <div className="flex items-center gap-2 mb-3">
                   <span className="signal-dot" />
-                  <span className="eyebrow">Pilot</span>
+                  <span className="eyebrow">Pilote</span>
                 </div>
                 <div className="font-display text-xl text-bone mb-4">{friend.name}</div>
 
                 <dl className="space-y-2 text-[13px]">
-                  <Row label="Dropzone" value={friend.paraclub || "—"} />
-                  <Row label="Objective" value={friend.objectif || "—"} />
+                  <Row label="Paraclub" value={friend.paraclub || "Non renseigné"} />
+                  <Row label="Objectif" value={friend.objectif || "Non renseigné"} />
                 </dl>
 
                 {friend.brevets?.length ? (
@@ -109,7 +109,7 @@ export default function Page() {
                     ))}
                   </div>
                 ) : (
-                  <div className="mt-4 font-serif italic text-bone-faint">No qualifications.</div>
+                  <div className="mt-4 font-serif italic text-bone-faint">Aucun brevet.</div>
                 )}
               </article>
             ))}

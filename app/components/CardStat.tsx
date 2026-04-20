@@ -1,5 +1,5 @@
 type CardStatProps = {
-  code: string; // 3-letter instrument code
+  code: string;
   label: string;
   value: number | string;
   unit?: string;

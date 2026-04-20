@@ -24,19 +24,19 @@ export const SignInForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div>
-        <label htmlFor="email" className="field-label">Email / callsign</label>
+        <label htmlFor="email" className="field-label">Email</label>
         <input
           id="email"
           className="field"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="pilot@sky.zone"
+          placeholder="pilote@paraclub.fr"
           required
         />
       </div>
       <div>
-        <label htmlFor="password" className="field-label">Passphrase</label>
+        <label htmlFor="password" className="field-label">Mot de passe</label>
         <input
           id="password"
           className="field"
@@ -51,10 +51,10 @@ export const SignInForm = () => {
         {loading ? (
           <span className="inline-flex items-center gap-2">
             <span className="h-3 w-3 rounded-full border-2 border-ink-0 border-t-transparent animate-spin" />
-            Connecting
+            Connexion
           </span>
         ) : (
-          "→ Engage"
+          "→ Se connecter"
         )}
       </button>
     </form>

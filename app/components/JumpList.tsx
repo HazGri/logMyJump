@@ -23,11 +23,11 @@ export const JumpList = async () => {
       <div className="panel hud-corners p-10 md:p-16 text-center">
         <span className="hud-tl" />
         <span className="hud-br" />
-        <div className="eyebrow mb-3">Empty log</div>
+        <div className="eyebrow mb-3">Carnet vide</div>
         <p className="font-serif italic text-2xl text-bone-dim mb-6">
-          No jumps recorded. The sky is still waiting.
+          Aucun saut enregistré. Le ciel t&rsquo;attend.
         </p>
-        <a href="/addJump" className="btn-phos inline-flex">→ Add your first jump</a>
+        <a href="/addJump" className="btn-phos inline-flex">→ Ajouter ton premier saut</a>
       </div>
     );
   }

@@ -12,38 +12,35 @@ export default async function Dashboard() {
   return (
     <Shell callsign={callsign}>
       <section className="container-x pt-10 pb-16">
-        {/* Page heading */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-10 bg-cyan" />
-              <span className="eyebrow">Mission board · /logbook</span>
+              <span className="eyebrow">Tableau de bord · carnet</span>
             </div>
             <h1 className="font-display text-4xl lg:text-6xl leading-none">
-              Flight
+              Carnet
               <br />
-              <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">journal</span>
+              <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">de sauts</span>
             </h1>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/addJump" className="btn-phos">
-              + Log a new jump
+              + Ajouter un saut
             </Link>
           </div>
         </div>
 
-        {/* Stats */}
         <div className="mb-10">
           <JumpStats />
         </div>
 
-        {/* Recent log */}
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-3">
             <span className="signal-dot" />
-            <h2 className="font-display text-sm tracking-[0.24em]">Recent entries</h2>
+            <h2 className="font-display text-sm tracking-[0.24em]">Mes derniers sauts</h2>
           </div>
-          <span className="eyebrow">Chronological · desc.</span>
+          <span className="eyebrow">Du plus récent au plus ancien</span>
         </div>
 
         <JumpList />

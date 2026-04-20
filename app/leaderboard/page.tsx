@@ -53,46 +53,45 @@ export default function Page() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <div className="h-[1px] w-10 bg-cyan" />
-              <span className="eyebrow">Squadron · formation rankings</span>
+              <span className="eyebrow">Escadrille · classement</span>
             </div>
             <h1 className="font-display text-4xl lg:text-6xl leading-none">
-              Sky
+              Classement
               <br />
-              <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">standings</span>
+              <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">des pilotes.</span>
             </h1>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/addFriend" className="btn-ghost-phos">+ Add pilot</Link>
+            <Link href="/addFriend" className="btn-ghost-phos">+ Ajouter un ami</Link>
             <Link href="/friendRequest" className="btn-ghost-phos">
-              Requests
+              Demandes
               {pendingCount > 0 && (
                 <span className="ml-2 inline-flex h-5 min-w-5 px-1.5 items-center justify-center rounded-full bg-amber text-ink-0 text-[10px] font-display">
                   {pendingCount}
                 </span>
               )}
             </Link>
-            <Link href="/friendList" className="btn-ghost-phos">Squadron</Link>
+            <Link href="/friendList" className="btn-ghost-phos">SkyBuddies</Link>
           </div>
         </div>
 
-        {/* Leaderboard list */}
         <div className="panel hud-corners p-4 md:p-6 relative overflow-hidden">
           <span className="hud-tl" />
           <span className="hud-br" />
           <div className="flex items-center justify-between mb-4 px-2">
             <div className="flex items-center gap-3">
               <span className="signal-dot" />
-              <span className="eyebrow">Board · top 7</span>
+              <span className="eyebrow">Tableau · top 7</span>
             </div>
             <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">
-              JUMPS · DESC
+              SAUTS · DÉCR.
             </span>
           </div>
 
           {leaderboard.length === 0 ? (
             <div className="p-10 text-center">
               <p className="font-serif italic text-xl text-bone-dim">
-                No squadron activity yet. Recruit a pilot.
+                Aucune activité. Ajoute un ami pour lancer la liaison.
               </p>
             </div>
           ) : (
@@ -118,7 +117,7 @@ export default function Page() {
                           </div>
                           {isMe && (
                             <span className="font-mono text-[10px] tracking-[0.22em] text-cyan border border-[color:var(--cyan)] px-1.5 py-0.5">
-                              YOU
+                              MOI
                             </span>
                           )}
                         </div>
@@ -143,7 +142,7 @@ export default function Page() {
                         <div className="number-instrument font-display text-xl md:text-2xl leading-none">
                           {String(user.jumpCount).padStart(3, "0")}
                         </div>
-                        <div className="eyebrow mt-1">jumps</div>
+                        <div className="eyebrow mt-1">sauts</div>
                       </div>
                     </div>
                   </li>

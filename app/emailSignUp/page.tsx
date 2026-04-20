@@ -15,20 +15,20 @@ export default function Page() {
 
       <section className="container-x py-12 lg:py-24 grid lg:grid-cols-2 gap-16 items-start">
         <div className="flex flex-col gap-6">
-          <span className="eyebrow">01 / enrolment</span>
+          <span className="eyebrow">01 / inscription</span>
           <h1 className="font-display text-4xl lg:text-6xl leading-none">
-            New
+            Nouveau
             <br />
-            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">flight file</span>
+            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">carnet de vol.</span>
           </h1>
           <p className="max-w-md font-mono text-[13px] text-bone-dim leading-relaxed">
-            Open a dedicated log. Your brevets, hours and dropzones travel with you.
+            Ouvre ton carnet. Tes brevets, tes heures et tes paraclubs voyagent avec toi.
           </p>
           <div className="hairline max-w-xs" />
           <ul className="space-y-2 font-mono text-[12px] text-bone-dim">
-            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Unlimited jumps</li>
-            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Squadron & leaderboard</li>
-            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Altitude & freefall totals</li>
+            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Sauts illimités</li>
+            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Escadrille et classement</li>
+            <li className="flex items-center gap-3"><span className="text-cyan">+</span>Totaux altitude et chute libre</li>
           </ul>
         </div>
 
@@ -37,8 +37,8 @@ export default function Page() {
           <span className="hud-br" />
           <div className="flex items-center gap-3 mb-8">
             <span className="signal-dot" />
-            <span className="eyebrow">Enrolment form</span>
-            <span className="ml-auto text-[10px] font-mono text-amber">PEND</span>
+            <span className="eyebrow">Fiche d&rsquo;inscription</span>
+            <span className="ml-auto text-[10px] font-mono text-amber">ATT</span>
           </div>
           <SignUpForm />
           <div className="hairline my-6" />
@@ -46,7 +46,7 @@ export default function Page() {
             href="/emailSignIn"
             className="font-display text-[11px] tracking-[0.22em] text-bone-dim hover:text-cyan transition-colors"
           >
-            → Already enrolled? Check in
+            → Déjà inscrit ? Se connecter
           </Link>
           <div className="scanline" />
         </div>

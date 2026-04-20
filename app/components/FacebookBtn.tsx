@@ -20,7 +20,7 @@ export const FacebookBtn = () => {
           d="M8 12h5V8c0-6 4-7 11-6v5c-4 0-5 0-5 3v2h5l-1 6h-4v12h-6V18H8z"
         />
       </svg>
-      Continue with Facebook
+      Continuer avec Facebook
     </button>
   );
 };

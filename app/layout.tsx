@@ -26,8 +26,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LogMyJump — Flight Journal",
-  description: "Carnet de sauts en parachute — cockpit nocturne",
+  title: "LogMyJump · Carnet de sauts",
+  description: "Carnet de sauts en parachute, cockpit nocturne",
 };
 
 export default function RootLayout({

@@ -56,8 +56,8 @@ export const JumpForm = () => {
           <span className="hud-br" />
           <div className="flex items-center gap-3 font-mono text-[12px] tracking-[0.18em] uppercase">
             <span className="signal-dot" />
-            <span className="text-cyan">Jump filed</span>
-            <span className="text-bone-dim">· archived to logbook</span>
+            <span className="text-cyan">Saut enregistré</span>
+            <span className="text-bone-dim">· ajouté au carnet</span>
           </div>
         </div>
       )}
@@ -72,23 +72,23 @@ export const JumpForm = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <span className="signal-dot" />
-            <span className="eyebrow">Sheet / JMP-001</span>
+            <span className="eyebrow">Fiche / JMP-001</span>
           </div>
-          <span className="font-mono text-[10px] tracking-[0.22em] text-amber">UNSAVED</span>
+          <span className="font-mono text-[10px] tracking-[0.22em] text-amber">NON ENREGISTRÉ</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          <Field label="Date of jump" code="DTE">
+          <Field label="Date du saut" code="DTE">
             <input id="date" type="date" className="field" required />
           </Field>
 
-          <Field label="Aircraft" code="AIR">
+          <Field label="Avion" code="AIR">
             <input id="aircraft" type="text" placeholder="Pilatus, Cessna, Skyvan…" className="field" />
           </Field>
 
-          <Field label="Altitude / exit" code="ALT">
+          <Field label="Altitude / largage" code="ALT">
             <select id="altitude" className="field" required defaultValue="">
-              <option value="" disabled>Select altitude…</option>
+              <option value="" disabled>Sélectionner une altitude…</option>
               <option value="4000">4000 m</option>
               <option value="1500">1500 m</option>
               <option value="3000">3000 m</option>
@@ -96,9 +96,9 @@ export const JumpForm = () => {
             </select>
           </Field>
 
-          <Field label="Jump type" code="TYP">
+          <Field label="Type de saut" code="TYP">
             <select id="jumpType" className="field" required defaultValue="">
-              <option value="" disabled>Select type…</option>
+              <option value="" disabled>Sélectionner un type…</option>
               <option value="solo">Solo</option>
               <option value="biplace">Biplace / Tandem</option>
               <option value="wingsuit">Wingsuit</option>
@@ -112,11 +112,11 @@ export const JumpForm = () => {
             </select>
           </Field>
 
-          <Field label="Dropzone" code="DZ">
+          <Field label="Paraclub / dropzone" code="DZ">
             <input id="location" type="text" placeholder="Nom de la dropzone" className="field" />
           </Field>
 
-          <Field label="Country" code="CTY">
+          <Field label="Pays" code="PAY">
             <select
               id="country"
               className="field"
@@ -124,7 +124,7 @@ export const JumpForm = () => {
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
             >
-              <option value="" disabled>Select country…</option>
+              <option value="" disabled>Sélectionner un pays…</option>
               <option value="france">🇫🇷 France</option>
               <option value="belgique">🇧🇪 Belgique</option>
               <option value="suisse">🇨🇭 Suisse</option>
@@ -138,22 +138,22 @@ export const JumpForm = () => {
               <option value="réunion">🇷🇪 La Réunion</option>
               <option value="djibouti">🇩🇯 Djibouti</option>
               <option value="maroc">🇲🇦 Maroc</option>
-              <option value="autre">🌍 Other</option>
+              <option value="autre">🌍 Autre</option>
             </select>
             {selectedCountry === "autre" && (
               <input
                 type="text"
                 value={customCountry}
                 onChange={(e) => setCustomCountry(e.target.value)}
-                placeholder="Enter country"
+                placeholder="Nom du pays"
                 className="field mt-3"
               />
             )}
           </Field>
 
           <div className="md:col-span-2">
-            <Field label="Pilot note" code="NTE">
-              <textarea id="note" rows={4} className="field" placeholder="Programme, impressions, météo, exit, landing…" />
+            <Field label="Note" code="NTE">
+              <textarea id="note" rows={4} className="field" placeholder="Programme, impressions, météo, sortie, posé…" />
             </Field>
           </div>
         </div>
@@ -161,9 +161,9 @@ export const JumpForm = () => {
         <div className="hairline my-8" />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="eyebrow">All fields archive under your callsign</div>
+          <div className="eyebrow">Enregistré sur ton carnet</div>
           <button type="submit" className="btn-phos" disabled={saving}>
-            {saving ? "Filing…" : "→ File jump in logbook"}
+            {saving ? "Enregistrement…" : "→ Enregistrer le saut"}
           </button>
         </div>
 

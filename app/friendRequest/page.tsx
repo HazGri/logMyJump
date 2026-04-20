@@ -39,11 +39,11 @@ export default function Page() {
         <div className="flex flex-col gap-3 mb-10">
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-10 bg-cyan" />
-            <span className="eyebrow">Squadron · inbound hails</span>
+            <span className="eyebrow">Escadrille · demandes entrantes</span>
           </div>
           <h1 className="font-display text-4xl lg:text-5xl leading-none">
-            Pending
-            <span className="font-serif italic normal-case text-cyan lowercase"> requests</span>
+            Demandes
+            <span className="font-serif italic normal-case text-cyan lowercase"> en attente</span>
           </h1>
         </div>
 
@@ -51,7 +51,7 @@ export default function Page() {
           <div className="panel hud-corners p-10 text-center">
             <span className="hud-tl" />
             <span className="hud-br" />
-            <p className="font-serif italic text-xl text-bone-dim">No inbound requests. Clear skies.</p>
+            <p className="font-serif italic text-xl text-bone-dim">Aucune demande pour le moment.</p>
           </div>
         ) : (
           <ul className="grid md:grid-cols-2 gap-3 drift-stagger">
@@ -61,7 +61,7 @@ export default function Page() {
                 className="panel-flat p-4 md:p-5 flex items-center gap-4 justify-between"
               >
                 <div className="min-w-0">
-                  <div className="eyebrow mb-1">Incoming pilot</div>
+                  <div className="eyebrow mb-1">Pilote entrant</div>
                   <div className="font-display text-lg text-bone truncate">
                     {req.requester.name || req.requester.email}
                   </div>
@@ -73,8 +73,8 @@ export default function Page() {
                   <button
                     onClick={() => handleAction(req.id, "accept")}
                     className="h-9 w-9 flex items-center justify-center border border-[color:var(--cyan)] text-cyan hover:bg-[color:var(--cyan-soft)]"
-                    aria-label="Accept"
-                    title="Accept"
+                    aria-label="Accepter"
+                    title="Accepter"
                   >
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8">
                       <path d="M3 8.5l3 3 7-7" />
@@ -83,8 +83,8 @@ export default function Page() {
                   <button
                     onClick={() => handleAction(req.id, "reject")}
                     className="h-9 w-9 flex items-center justify-center border border-[color:var(--vermillon)] text-[color:var(--vermillon)] hover:bg-[rgba(255,91,56,0.12)]"
-                    aria-label="Reject"
-                    title="Reject"
+                    aria-label="Refuser"
+                    title="Refuser"
                   >
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8">
                       <path d="M3 3l10 10M13 3L3 13" />

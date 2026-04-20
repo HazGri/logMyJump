@@ -77,7 +77,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ============ Atmosphere — subtle grid + grain behind everything ============ */
+/* ============ Atmosphere: subtle grid + grain behind everything ============ */
 .app-atmosphere {
   position: fixed;
   inset: 0;
@@ -161,7 +161,7 @@ body {
   border-width: 0 1px 1px 0;
 }
 
-/* Ruled hairline — horizontal stratum */
+/* Ruled hairline: horizontal stratum */
 .hairline {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--hairline-strong) 20%, var(--hairline-strong) 80%, transparent);

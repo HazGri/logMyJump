@@ -25,7 +25,7 @@ export const UserProfileInfo = () => {
   if (loading) {
     return (
       <div className="panel-flat p-8 text-center">
-        <span className="eyebrow">Fetching pilot data<span className="blink" /></span>
+        <span className="eyebrow">Chargement du profil<span className="blink" /></span>
       </div>
     );
   }
@@ -35,11 +35,11 @@ export const UserProfileInfo = () => {
 
   return (
     <div className="grid md:grid-cols-3 gap-4">
-      <DataBlock code="DZ" label="Home dropzone" value={paraclub || "Not registered"} />
-      <DataBlock code="OBJ" label="Current objective" value={objectif || "Not registered"} emphasis />
+      <DataBlock code="DZ" label="Paraclub préféré" value={paraclub || "Non renseigné"} />
+      <DataBlock code="OBJ" label="Objectif" value={objectif || "Non renseigné"} emphasis />
       <div className="panel-flat p-5 md:p-6">
         <div className="flex items-baseline justify-between mb-3">
-          <span className="eyebrow">Brevets held</span>
+          <span className="eyebrow">Brevets obtenus</span>
           <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">{brevets.length}·QUAL</span>
         </div>
         {brevets.length > 0 ? (
@@ -49,7 +49,7 @@ export const UserProfileInfo = () => {
             ))}
           </div>
         ) : (
-          <div className="font-serif italic text-bone-dim">No qualifications filed.</div>
+          <div className="font-serif italic text-bone-dim">Aucun brevet renseigné.</div>
         )}
       </div>
     </div>

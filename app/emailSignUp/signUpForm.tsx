@@ -35,7 +35,7 @@ export const SignUpForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div>
-        <label htmlFor="name" className="field-label">Callsign</label>
+        <label htmlFor="name" className="field-label">Nom / pseudo</label>
         <input
           id="name"
           type="text"
@@ -54,12 +54,12 @@ export const SignUpForm = () => {
           className="field"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="pilot@sky.zone"
+          placeholder="pilote@paraclub.fr"
           required
         />
       </div>
       <div>
-        <label htmlFor="password" className="field-label">Passphrase</label>
+        <label htmlFor="password" className="field-label">Mot de passe</label>
         <input
           id="password"
           type="password"
@@ -74,10 +74,10 @@ export const SignUpForm = () => {
         {loading ? (
           <span className="inline-flex items-center gap-2">
             <span className="h-3 w-3 rounded-full border-2 border-ink-0 border-t-transparent animate-spin" />
-            Deploying
+            Création
           </span>
         ) : (
-          "→ Open flight log"
+          "→ Ouvrir mon carnet"
         )}
       </button>
     </form>

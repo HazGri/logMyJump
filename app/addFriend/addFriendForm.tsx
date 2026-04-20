@@ -24,14 +24,14 @@ export const AddFriendForm = () => {
       const result = await res.json();
 
       if (res.ok) {
-        setMessage("Invitation transmitted. Awaiting acknowledgement.");
+        setMessage("Invitation envoyée. En attente de réponse.");
         setEmail("");
       } else {
-        setError(result.error || "Transmission failed.");
+        setError(result.error || "Échec de l'envoi.");
       }
     } catch (err) {
       console.error("Erreur réseau ou serveur :", err);
-      setError("Network error.");
+      setError("Erreur réseau.");
     } finally {
       setLoading(false);
     }
@@ -44,26 +44,26 @@ export const AddFriendForm = () => {
 
       <div className="flex items-center gap-3 mb-8">
         <span className="signal-dot" />
-        <span className="eyebrow">Transmit / handshake</span>
+        <span className="eyebrow">Invitation / transmission</span>
       </div>
 
-      <label htmlFor="email" className="field-label">Target pilot email</label>
+      <label htmlFor="email" className="field-label">Email du pilote</label>
       <input
         id="email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        placeholder="pilot@sky.zone"
+        placeholder="pilote@paraclub.fr"
         className="field"
       />
 
       <div className="hairline my-8" />
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div className="eyebrow">The pilot must already hold a flight log</div>
+        <div className="eyebrow">Le pilote doit déjà avoir un carnet LogMyJump</div>
         <button type="submit" className="btn-phos" disabled={loading}>
-          {loading ? "Transmitting…" : "→ Send invitation"}
+          {loading ? "Envoi…" : "→ Envoyer l'invitation"}
         </button>
       </div>
 

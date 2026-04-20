@@ -9,7 +9,7 @@ import { UserProfileInfo } from "../components/UserProfileInfo";
 export default function Page() {
   const router = useRouter();
   const { data: session } = authClient.useSession();
-  const name = session?.user?.name ?? "—";
+  const name = session?.user?.name ?? "Non connecté";
   const email = session?.user?.email ?? "";
   const callsign = name.toUpperCase().slice(0, 8);
 
@@ -24,16 +24,15 @@ export default function Page() {
         <div className="flex flex-col gap-3 mb-10">
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-10 bg-cyan" />
-            <span className="eyebrow">Pilot · credentials</span>
+            <span className="eyebrow">Pilote · identifiants</span>
           </div>
           <h1 className="font-display text-4xl lg:text-6xl leading-none">
-            Flight
+            Identité
             <br />
-            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">identity</span>
+            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">de vol.</span>
           </h1>
         </div>
 
-        {/* ID Card */}
         <div className="panel hud-corners p-6 md:p-10 mb-10 relative overflow-hidden">
           <span className="hud-tl" />
           <span className="hud-br" />
@@ -41,18 +40,18 @@ export default function Page() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <span className="signal-dot" />
-                <span className="eyebrow">Active pilot / verified</span>
+                <span className="eyebrow">Pilote actif / vérifié</span>
               </div>
-              <div className="eyebrow mb-2">Callsign</div>
+              <div className="eyebrow mb-2">Indicatif</div>
               <div className="font-display text-3xl md:text-4xl text-bone mb-4">{name}</div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <div className="eyebrow mb-1">Email</div>
-                  <div className="font-mono text-[13px] text-bone-dim break-all">{email || "—"}</div>
+                  <div className="font-mono text-[13px] text-bone-dim break-all">{email || "Non renseigné"}</div>
                 </div>
                 <div>
-                  <div className="eyebrow mb-1">Status</div>
-                  <div className="font-mono text-[13px] text-cyan">OPERATIONAL</div>
+                  <div className="eyebrow mb-1">Statut</div>
+                  <div className="font-mono text-[13px] text-cyan">OPÉRATIONNEL</div>
                 </div>
               </div>
             </div>
@@ -70,7 +69,6 @@ export default function Page() {
           <div className="scanline" />
         </div>
 
-        {/* Profile details */}
         <UserProfileInfo />
 
         <div className="hairline my-10" />
@@ -80,10 +78,10 @@ export default function Page() {
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M11 2l3 3-8 8H3v-3l8-8z" />
             </svg>
-            Edit profile
+            Modifier le profil
           </Link>
           <button onClick={handleSignOut} className="btn-destruct btn-ghost-phos">
-            Sign out
+            Se déconnecter
           </button>
         </div>
       </section>

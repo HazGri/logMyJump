@@ -10,9 +10,9 @@ type Props = {
 };
 
 const navItems = [
-  { href: "/dashboard", label: "Logbook", code: "LOG", icon: LogbookIcon },
-  { href: "/leaderboard", label: "Squadron", code: "SQD", icon: SquadronIcon },
-  { href: "/userProfile", label: "Pilot", code: "PLT", icon: PilotIcon },
+  { href: "/dashboard", label: "Carnet", code: "LOG", icon: LogbookIcon },
+  { href: "/leaderboard", label: "Escadrille", code: "ESC", icon: SquadronIcon },
+  { href: "/userProfile", label: "Pilote", code: "PLT", icon: PilotIcon },
 ];
 
 export const Shell = ({ children, callsign }: Props) => {
@@ -34,7 +34,6 @@ export const Shell = ({ children, callsign }: Props) => {
 
   return (
     <>
-      {/* Top strip — mission bar */}
       <header className="sticky top-0 z-40 border-b border-[color:var(--hairline-strong)] bg-[color:var(--ink-1)]/80 backdrop-blur-md">
         <div className="container-x flex h-14 items-center gap-6">
           <Link href="/dashboard" className="flex items-center gap-3 group">
@@ -47,13 +46,13 @@ export const Shell = ({ children, callsign }: Props) => {
           <div className="hidden md:flex items-center gap-6 text-[10px] font-mono uppercase tracking-[0.24em] text-bone-dim ml-4">
             <span className="flex items-center gap-2">
               <span className="signal-dot" />
-              <span>Link</span>
-              <span className="text-cyan">online</span>
+              <span>liaison</span>
+              <span className="text-cyan">ok</span>
             </span>
             <span>UTC <span className="text-bone">{now}</span></span>
             {callsign && (
               <span>
-                CS <span className="text-amber">{callsign}</span>
+                IND <span className="text-amber">{callsign}</span>
               </span>
             )}
           </div>
@@ -64,11 +63,10 @@ export const Shell = ({ children, callsign }: Props) => {
         </div>
       </header>
 
-      {/* Desktop sidebar */}
       <aside className="hidden lg:flex fixed left-0 top-14 bottom-0 w-[240px] flex-col border-r border-[color:var(--hairline-strong)] bg-[color:var(--ink-1)]/60 backdrop-blur-sm z-30">
         <div className="px-6 py-8 flex flex-col gap-1">
-          <span className="eyebrow">Nav / panel</span>
-          <span className="font-serif italic text-xl text-bone mt-1">Choose heading</span>
+          <span className="eyebrow">Navigation · panneau</span>
+          <span className="font-serif italic text-xl text-bone mt-1">Choisis ton cap</span>
         </div>
         <nav className="flex-1 px-3 flex flex-col gap-1">
           {navItems.map((item) => {
@@ -100,15 +98,13 @@ export const Shell = ({ children, callsign }: Props) => {
         <div className="px-6 py-6 border-t border-[color:var(--hairline-strong)]">
           <div className="eyebrow mb-2">Horizon</div>
           <div className="font-serif italic text-sm text-bone-dim leading-snug">
-            &ldquo;The sky isn&rsquo;t the limit — it&rsquo;s the territory.&rdquo;
+            &ldquo;Le ciel n&rsquo;est pas une limite, c&rsquo;est un terrain de jeu.&rdquo;
           </div>
         </div>
       </aside>
 
-      {/* Main content */}
       <main className="shell-main">{children}</main>
 
-      {/* Mobile bottom nav */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-[color:var(--hairline-strong)] bg-[color:var(--ink-1)]/95 backdrop-blur-md">
         <div className="flex items-stretch h-[72px] max-w-xl mx-auto px-4">
           {navItems.map((item) => {

@@ -67,7 +67,7 @@ export const ProfileForm = () => {
   if (loading) {
     return (
       <div className="panel-flat p-10 text-center">
-        <span className="eyebrow">Fetching profile<span className="blink" /></span>
+        <span className="eyebrow">Chargement du profil<span className="blink" /></span>
       </div>
     );
   }
@@ -79,7 +79,7 @@ export const ProfileForm = () => {
 
       <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
         <div>
-          <label className="field-label">Home dropzone</label>
+          <label className="field-label">Paraclub préféré</label>
           <input
             type="text"
             value={paraclub}
@@ -89,7 +89,7 @@ export const ProfileForm = () => {
           />
         </div>
         <div>
-          <label className="field-label">Current objective</label>
+          <label className="field-label">Objectif</label>
           <input
             type="text"
             value={objectif}
@@ -102,9 +102,9 @@ export const ProfileForm = () => {
 
       <div className="mb-8">
         <div className="flex items-baseline justify-between mb-3">
-          <label className="field-label mb-0">Brevets held</label>
+          <label className="field-label mb-0">Brevets obtenus</label>
           <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">
-            {brevets.length} / {brevetOptions.length} SELECTED
+            {brevets.length} / {brevetOptions.length} SÉLECTIONNÉS
           </span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -125,9 +125,9 @@ export const ProfileForm = () => {
       <div className="hairline mb-6" />
 
       <div className="flex flex-col md:flex-row justify-between gap-4">
-        <span className="eyebrow self-center">Updates are archived instantly</span>
+        <span className="eyebrow self-center">Tes changements sont sauvegardés instantanément</span>
         <button type="submit" className="btn-phos" disabled={saving}>
-          {saving ? "Saving…" : "→ Save credentials"}
+          {saving ? "Enregistrement…" : "→ Enregistrer"}
         </button>
       </div>
 

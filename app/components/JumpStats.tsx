@@ -29,9 +29,9 @@ export const JumpStats = async () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 drift-stagger">
-      <CardStat code="JMP" label="Jumps logged" value={String(totalJumps).padStart(3, "0")} unit="total" />
-      <CardStat code="ALT" label="Altitude flown" value={totalAltitudeKm} unit="kilometres" tone="amber" />
-      <CardStat code="FFT" label="Freefall time" value={timeLabel} unit="cumulative" />
+      <CardStat code="JMP" label="Nombre de sauts" value={String(totalJumps).padStart(3, "0")} unit="total" />
+      <CardStat code="ALT" label="Altitude cumulée" value={totalAltitudeKm} unit="kilomètres" tone="amber" />
+      <CardStat code="CHL" label="Chute libre" value={timeLabel} unit="cumulé" />
     </div>
   );
 };

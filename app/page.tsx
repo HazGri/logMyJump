@@ -6,7 +6,6 @@ import { GoogleBtn } from "./components/GoogleBtn";
 export default function Home() {
   return (
     <div className="relative z-10 min-h-screen">
-      {/* Minimal top rail (no Shell on landing) */}
       <header className="sticky top-0 z-30 border-b border-[color:var(--hairline-strong)] bg-[color:var(--ink-1)]/70 backdrop-blur-md">
         <div className="container-x flex h-14 items-center gap-4">
           <div className="flex items-center gap-3">
@@ -23,33 +22,31 @@ export default function Home() {
           <div className="ml-auto flex items-center gap-4 text-[10px] font-mono uppercase tracking-[0.24em] text-bone-dim">
             <span className="flex items-center gap-2">
               <span className="signal-dot" />
-              <span>carrier</span>
-              <span className="text-cyan">ready</span>
+              <span>liaison</span>
+              <span className="text-cyan">ok</span>
             </span>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
       <section className="container-x pt-10 pb-20 lg:pt-20 lg:pb-32 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center drift-stagger">
-        {/* Left: editorial headline + sign in */}
         <div className="lg:col-span-7 flex flex-col gap-8">
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-12 bg-cyan" />
-            <span className="eyebrow">Flight journal · est. 2024</span>
+            <span className="eyebrow">Carnet de sauts · depuis 2024</span>
           </div>
 
           <h1 className="font-display text-[42px] leading-[0.95] sm:text-[56px] lg:text-[84px] text-bone">
-            Keep the sky
+            Garde le ciel
             <br />
             <span className="font-serif italic normal-case tracking-normal text-cyan lowercase text-[52px] sm:text-[72px] lg:text-[108px]">
-              on the record.
+              dans tes archives.
             </span>
           </h1>
 
           <p className="max-w-xl text-bone-dim text-[15px] leading-relaxed font-mono">
-            A digital logbook for parachutists. Log every jump, chart your altitude, track your
-            squadron and own your progression — from PAC to wingsuit.
+            Un carnet de sauts numérique pour parachutistes. Enregistre chaque saut,
+            cumule ton altitude, suis ton escadrille et pilote ta progression, de la PAC au wingsuit.
           </p>
 
           <div className="hairline max-w-md" />
@@ -61,12 +58,12 @@ export default function Home() {
                 <rect width="20" height="16" x="2" y="4" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
-              Sign in with email
+              Se connecter par email
             </Link>
 
             <div className="flex items-center gap-4 my-2">
               <div className="flex-grow h-px bg-[color:var(--hairline-strong)]" />
-              <span className="eyebrow">or</span>
+              <span className="eyebrow">ou</span>
               <div className="flex-grow h-px bg-[color:var(--hairline-strong)]" />
             </div>
 
@@ -74,12 +71,11 @@ export default function Home() {
               href="/emailSignUp"
               className="self-start font-display text-[11px] tracking-[0.22em] text-cyan hover:text-bone transition-colors border-b border-dashed border-[color:var(--hairline-strong)] pb-0.5"
             >
-              → open a new flight log
+              → Créer un carnet de sauts
             </Link>
           </div>
         </div>
 
-        {/* Right: instrument dial + ticker */}
         <div className="lg:col-span-5 relative">
           <InstrumentDial />
 
@@ -87,24 +83,23 @@ export default function Home() {
             <span className="hud-tl" />
             <span className="hud-br" />
             <div className="flex items-center justify-between mb-4">
-              <span className="eyebrow">System status</span>
+              <span className="eyebrow">Statut système</span>
               <span className="text-[10px] font-mono text-cyan">// LIVE</span>
             </div>
             <ul className="space-y-2 font-mono text-[12px]">
-              <StatusRow label="Altimeter" value="04 000 m" />
-              <StatusRow label="Canopy" value="ready" tone="cyan" />
-              <StatusRow label="Drop zone" value="awaiting input" tone="dim" />
-              <StatusRow label="Freefall queue" value="00 : 00 : 00" />
+              <StatusRow label="Altimètre" value="04 000 m" />
+              <StatusRow label="Voilure" value="prête" tone="cyan" />
+              <StatusRow label="Paraclub" value="en attente" tone="dim" />
+              <StatusRow label="Chute libre" value="00 : 00 : 00" />
             </ul>
             <div className="scanline" />
           </div>
         </div>
       </section>
 
-      {/* Footer strip */}
       <footer className="border-t border-[color:var(--hairline-strong)] py-6">
         <div className="container-x flex flex-col md:flex-row gap-2 md:items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-bone-faint">
-          <span>© LogMyJump — built for canopy-folders</span>
+          <span>© LogMyJump · par et pour les plieurs de voile</span>
           <span>Coord. 48.8566°N · 2.3522°E</span>
         </div>
       </footer>
@@ -156,12 +151,10 @@ function InstrumentDial() {
             />
           );
         })}
-        {/* labels */}
         <text x="100" y="22" textAnchor="middle" fill="#5ff7f3" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">0</text>
         <text x="178" y="104" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">9</text>
         <text x="100" y="188" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">18</text>
         <text x="22" y="104" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">27</text>
-        {/* needle */}
         <g transform="rotate(-35 100 100)" style={{ transformOrigin: "100px 100px" }}>
           <line x1="100" y1="100" x2="100" y2="30" stroke="#ffb347" strokeWidth="2" />
           <circle cx="100" cy="30" r="3" fill="#ffb347" />
@@ -173,7 +166,7 @@ function InstrumentDial() {
         <div className="text-center">
           <div className="eyebrow mb-1">Altitude</div>
           <div className="font-display text-2xl text-amber glow-amber number-instrument">04 000</div>
-          <div className="eyebrow mt-1">meters / AGL</div>
+          <div className="eyebrow mt-1">mètres / sol</div>
         </div>
       </div>
       <div className="absolute inset-0 -z-10 blur-3xl opacity-60" style={{ background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(95,247,243,0.2), transparent)" }} />

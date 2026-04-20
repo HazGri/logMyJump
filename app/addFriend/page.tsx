@@ -10,14 +10,14 @@ export default function Page() {
         <div className="flex flex-col gap-3 mb-10">
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-10 bg-cyan" />
-            <span className="eyebrow">Squadron · recruitment</span>
+            <span className="eyebrow">Escadrille · recrutement</span>
           </div>
           <h1 className="font-display text-4xl lg:text-5xl leading-none">
-            Hail a
+            Ajouter un
             <span className="font-serif italic normal-case text-cyan lowercase"> sky buddy</span>
           </h1>
           <p className="font-mono text-[13px] text-bone-dim max-w-lg">
-            Enter the pilot&rsquo;s email address to transmit an invitation.
+            Renseigne l&rsquo;email du pilote pour lui envoyer une invitation.
           </p>
         </div>
 

@@ -18,7 +18,7 @@ export const JumpCard = ({ jump, index }: { jump: Jump; index?: number }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleDelete = async () => {
-    const confirmed = confirm("Purge this jump from the log?");
+    const confirmed = confirm("Supprimer ce saut du carnet ?");
     if (!confirmed) return;
 
     const res = await fetch(`/api/jumps/${jump.id}`, { method: "DELETE" });
@@ -30,50 +30,46 @@ export const JumpCard = ({ jump, index }: { jump: Jump; index?: number }) => {
 
   const date = new Date(jump.date);
   const dd = String(date.getDate()).padStart(2, "0");
-  const mmShort = date.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  const mmShort = date.toLocaleDateString("fr-FR", { month: "short" }).toUpperCase().replace(".", "");
   const yyyy = date.getFullYear();
 
   return (
     <article className="panel-flat group relative px-4 md:px-6 py-5 hover:border-[color:var(--cyan)] transition-colors">
       <div className="flex items-center gap-5 md:gap-7">
-        {/* Date column */}
         <div className="shrink-0 text-center border-r border-[color:var(--hairline-strong)] pr-5 md:pr-7">
           <div className="font-display text-3xl md:text-4xl text-bone leading-none">{dd}</div>
           <div className="eyebrow mt-1">{mmShort}</div>
           <div className="text-[10px] font-mono text-bone-faint mt-0.5">{yyyy}</div>
         </div>
 
-        {/* Main */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
             <span className="font-display text-[11px] tracking-[0.22em] text-cyan">{jump.jumpType}</span>
             {typeof index === "number" && (
               <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">
-                · #{String(index).padStart(3, "0")}
+                · n°{String(index).padStart(3, "0")}
               </span>
             )}
           </div>
           <div className="font-serif italic text-lg md:text-xl text-bone truncate">
-            {jump.location || "—"}{jump.country ? <span className="text-bone-dim">, {jump.country}</span> : null}
+            {jump.location || "Non renseigné"}{jump.country ? <span className="text-bone-dim">, {jump.country}</span> : null}
           </div>
         </div>
 
-        {/* Altitude readout */}
         <div className="shrink-0 text-right">
           <div className="eyebrow">Alt</div>
           <div className="number-instrument font-display text-xl md:text-2xl text-amber glow-amber leading-none mt-1">
-            {jump.altitude.toLocaleString()}
+            {jump.altitude.toLocaleString("fr-FR")}
           </div>
-          <div className="text-[10px] font-mono text-bone-faint mt-0.5">m / AGL</div>
+          <div className="text-[10px] font-mono text-bone-faint mt-0.5">m / sol</div>
         </div>
 
-        {/* Controls */}
         <div className="shrink-0 flex items-center gap-2">
           {jump.note && (
             <button
               type="button"
               onClick={() => setExpanded((v) => !v)}
-              aria-label="Toggle note"
+              aria-label="Afficher la note"
               className="h-9 w-9 flex items-center justify-center border border-[color:var(--hairline-strong)] text-bone-dim hover:border-[color:var(--cyan)] hover:text-cyan transition-colors"
             >
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3">
@@ -85,7 +81,7 @@ export const JumpCard = ({ jump, index }: { jump: Jump; index?: number }) => {
           <button
             type="button"
             onClick={handleDelete}
-            aria-label="Delete jump"
+            aria-label="Supprimer le saut"
             className="h-9 w-9 flex items-center justify-center border border-[color:var(--hairline-strong)] text-bone-dim hover:border-[color:var(--vermillon)] hover:text-[color:var(--vermillon)] transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -97,7 +93,7 @@ export const JumpCard = ({ jump, index }: { jump: Jump; index?: number }) => {
 
       {jump.note && expanded && (
         <div className="mt-4 pt-4 border-t border-dashed border-[color:var(--hairline)]">
-          <div className="eyebrow mb-2">Pilot note</div>
+          <div className="eyebrow mb-2">Note du pilote</div>
           <p className="font-serif italic text-bone-dim leading-relaxed">{jump.note}</p>
         </div>
       )}

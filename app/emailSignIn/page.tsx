@@ -15,19 +15,19 @@ export default function Page() {
 
       <section className="container-x py-12 lg:py-24 grid lg:grid-cols-2 gap-16 items-start">
         <div className="flex flex-col gap-6">
-          <span className="eyebrow">01 / authorisation</span>
+          <span className="eyebrow">01 / authentification</span>
           <h1 className="font-display text-4xl lg:text-6xl leading-none">
-            Pilot
+            Pilote
             <br />
-            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">check-in</span>
+            <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">à bord.</span>
           </h1>
           <p className="max-w-md font-mono text-[13px] text-bone-dim leading-relaxed">
-            Identify the aviator. Credentials are cross-checked against the mission log.
+            Identifie le pilote. Les identifiants sont vérifiés contre le carnet de bord.
           </p>
           <div className="hairline max-w-xs" />
           <div className="flex flex-wrap gap-4 text-[10px] font-mono uppercase tracking-[0.22em] text-bone-faint">
-            <span>AUTH-E-MAIL · 256-bit</span>
-            <span className="text-cyan">SESSION · TRANSIENT</span>
+            <span>AUTH EMAIL · 256 bit</span>
+            <span className="text-cyan">SESSION · VOLATILE</span>
           </div>
         </div>
 
@@ -36,8 +36,8 @@ export default function Page() {
           <span className="hud-br" />
           <div className="flex items-center gap-3 mb-8">
             <span className="signal-dot" />
-            <span className="eyebrow">Secure uplink</span>
-            <span className="ml-auto text-[10px] font-mono text-cyan">READY</span>
+            <span className="eyebrow">Liaison sécurisée</span>
+            <span className="ml-auto text-[10px] font-mono text-cyan">PRÊT</span>
           </div>
           <SignInForm />
           <div className="hairline my-6" />
@@ -45,7 +45,7 @@ export default function Page() {
             href="/emailSignUp"
             className="font-display text-[11px] tracking-[0.22em] text-bone-dim hover:text-cyan transition-colors"
           >
-            → Not enrolled? Open a flight log
+            → Pas encore de carnet ? En ouvrir un
           </Link>
           <div className="scanline" />
         </div>
