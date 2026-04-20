@@ -13,43 +13,25 @@ export const JumpStats = async () => {
 
   const totalJumps = jumps.length;
   const totalAltitude = jumps.reduce((sum, jump) => sum + jump.altitude, 0);
-  const totalAltitudeKm = (totalAltitude / 1000).toFixed(1); // ex: 12.4 km
+  const totalAltitudeKm = (totalAltitude / 1000).toFixed(1);
 
-  const estimatedTotalSeconds = jumps.reduce((sum, jump) => {
-    return sum + estimateFreefallTime(jump.altitude);
-  }, 0);
-
+  const estimatedTotalSeconds = jumps.reduce((sum, jump) => sum + estimateFreefallTime(jump.altitude), 0);
   const totalSeconds = Math.round(estimatedTotalSeconds);
 
   let timeLabel = "";
   if (totalSeconds < 60) {
-    timeLabel = `${totalSeconds} sec`;
+    timeLabel = `${totalSeconds}s`;
   } else {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    timeLabel = seconds > 0 ? `${minutes}min ${seconds}s` : `${minutes} min`;
+    timeLabel = seconds > 0 ? `${minutes}m${String(seconds).padStart(2, "0")}` : `${minutes}m`;
   }
 
   return (
-    <div className="flex gap-3 mx-2 -mt-6">
-      <CardStat
-        imgSrc="/img/skydive.svg"
-        imgAlt="image d'un parachutiste"
-        cardTitle="Nombre de sauts"
-        cardData={totalJumps}
-      />
-      <CardStat
-        imgSrc="/img/altitude.svg"
-        imgAlt="image d'une montagne"
-        cardTitle="Altitude totale"
-        cardData={`${totalAltitudeKm}km`}
-      />
-      <CardStat
-        imgSrc="/img/timer.svg"
-        imgAlt="image d'un timer"
-        cardTitle="Temps en chute"
-        cardData={timeLabel}
-      />
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 drift-stagger">
+      <CardStat code="JMP" label="Jumps logged" value={String(totalJumps).padStart(3, "0")} unit="total" />
+      <CardStat code="ALT" label="Altitude flown" value={totalAltitudeKm} unit="kilometres" tone="amber" />
+      <CardStat code="FFT" label="Freefall time" value={timeLabel} unit="cumulative" />
     </div>
   );
 };

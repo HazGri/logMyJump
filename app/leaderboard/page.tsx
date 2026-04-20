@@ -1,17 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Footer } from "../components/Footer";
 import Link from "next/link";
+import { Shell } from "../components/Shell";
 
-export default function Home() {
+export default function Page() {
   const [pendingCount, setPendingCount] = useState(0);
   const [leaderboard, setLeaderboard] = useState<
     { id: string; name: string; jumpCount: number }[]
   >([]);
-
-  const [sessionUserId, setSessionUserId] = useState(""); // Ajout sessionUserId
+  const [sessionUserId, setSessionUserId] = useState("");
 
   useEffect(() => {
     const fetchPending = async () => {
@@ -28,9 +26,8 @@ export default function Home() {
       try {
         const res = await fetch("/api/friends/leaderboard");
         const data = await res.json();
-
         setLeaderboard(data.leaderboard);
-        setSessionUserId(data.sessionUserId); // récupérer l'id utilisateur connecté
+        setSessionUserId(data.sessionUserId);
       } catch (err) {
         console.error("Erreur chargement leaderboard :", err);
       }
@@ -44,59 +41,118 @@ export default function Home() {
     if (index === 0) return "gold-medal";
     if (index === 1) return "silver-medal";
     if (index === 2) return "bronze-medal";
-    return "bg-white";
+    return "panel-flat";
   };
-  
+
+  const topJump = leaderboard[0]?.jumpCount || 1;
 
   return (
-    <div className="min-h-screen bg-neutral-100 max-w-md mx-auto relative pb-[150px]">
-      <div className="text-white shadow-xl bg-[#50ADCE] w-full h-[135px] flex justify-center">
-        <div className="flex items-center mr-auto pl-10 gap-3">
-          <Image
-            width={60}
-            height={60}
-            alt="image podium"
-            src="/img/podium.svg"
-          />
-          <p className="text-2xl pt-3">Leaderboard</p>
-        </div>
-      </div>
-
-      <main className="px-4 mt-6 space-y-2 h-[450px] overflow-y-scroll">
-        {leaderboard.length === 0 ? (
-          <p className="text-center text-gray-500">Aucun ami pour le moment.</p>
-        ) : (
-          leaderboard.slice(0, 7).map((user, i) => (
-            <div
-              key={user.id}
-              className={`p-3 rounded shadow flex justify-between items-center ${getMedalClass(
-                i
-              )} ${
-                user.id === sessionUserId ? "border-4 border-blue-300" : ""
-              }`}
-            >
-              <span className="font-semibold">
-                {user.name} {user.id === sessionUserId && "(Moi)"}
-              </span>
-              <span>{user.jumpCount} sauts</span>
+    <Shell>
+      <section className="container-x pt-10 pb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div className="h-[1px] w-10 bg-cyan" />
+              <span className="eyebrow">Squadron · formation rankings</span>
             </div>
-          ))
-        )}
-      </main>
+            <h1 className="font-display text-4xl lg:text-6xl leading-none">
+              Sky
+              <br />
+              <span className="font-serif italic normal-case text-cyan lowercase text-5xl lg:text-7xl">standings</span>
+            </h1>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/addFriend" className="btn-ghost-phos">+ Add pilot</Link>
+            <Link href="/friendRequest" className="btn-ghost-phos">
+              Requests
+              {pendingCount > 0 && (
+                <span className="ml-2 inline-flex h-5 min-w-5 px-1.5 items-center justify-center rounded-full bg-amber text-ink-0 text-[10px] font-display">
+                  {pendingCount}
+                </span>
+              )}
+            </Link>
+            <Link href="/friendList" className="btn-ghost-phos">Squadron</Link>
+          </div>
+        </div>
 
-      <div className="fixed bottom-30 left-1/2 -translate-x-1/2 flex flex-col gap-2 w-40">
-        <Link href="/addFriend" className="btn btn-accent">
-          Ajouter un ami
-        </Link>
-        <Link href="/friendRequest" className="btn btn-warning">
-          Demandes en attente : {pendingCount}
-        </Link>
-        <Link href="/friendList" className="btn btn-info">
-          SkyBuddies
-        </Link>
-      </div>
+        {/* Leaderboard list */}
+        <div className="panel hud-corners p-4 md:p-6 relative overflow-hidden">
+          <span className="hud-tl" />
+          <span className="hud-br" />
+          <div className="flex items-center justify-between mb-4 px-2">
+            <div className="flex items-center gap-3">
+              <span className="signal-dot" />
+              <span className="eyebrow">Board · top 7</span>
+            </div>
+            <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">
+              JUMPS · DESC
+            </span>
+          </div>
 
-      <Footer />
-    </div>
+          {leaderboard.length === 0 ? (
+            <div className="p-10 text-center">
+              <p className="font-serif italic text-xl text-bone-dim">
+                No squadron activity yet. Recruit a pilot.
+              </p>
+            </div>
+          ) : (
+            <ol className="flex flex-col gap-3 drift-stagger">
+              {leaderboard.slice(0, 7).map((user, i) => {
+                const isMe = user.id === sessionUserId;
+                const pct = Math.max(8, Math.round((user.jumpCount / topJump) * 100));
+                return (
+                  <li
+                    key={user.id}
+                    className={`relative ${getMedalClass(i)} ${isMe ? "ring-phos" : ""} px-4 md:px-6 py-4`}
+                  >
+                    <div className="flex items-center gap-4 md:gap-6">
+                      <div className="shrink-0 w-10 text-center">
+                        <div className="font-display text-2xl">
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <div className="font-serif italic text-lg md:text-xl truncate">
+                            {user.name}
+                          </div>
+                          {isMe && (
+                            <span className="font-mono text-[10px] tracking-[0.22em] text-cyan border border-[color:var(--cyan)] px-1.5 py-0.5">
+                              YOU
+                            </span>
+                          )}
+                        </div>
+                        <div className="h-[3px] mt-2 bg-[color:var(--ink-4)] overflow-hidden">
+                          <div
+                            className="h-full"
+                            style={{
+                              width: `${pct}%`,
+                              background:
+                                i === 0
+                                  ? "linear-gradient(90deg, #ffd700, #ffa500)"
+                                  : i === 1
+                                  ? "linear-gradient(90deg, #dce6f5, #a7b0c3)"
+                                  : i === 2
+                                  ? "linear-gradient(90deg, #e0a96d, #c47f3f)"
+                                  : "var(--cyan)",
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <div className="number-instrument font-display text-xl md:text-2xl leading-none">
+                          {String(user.jumpCount).padStart(3, "0")}
+                        </div>
+                        <div className="eyebrow mt-1">jumps</div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </div>
+      </section>
+    </Shell>
   );
 }

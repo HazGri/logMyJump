@@ -1,30 +1,29 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-
-import Image from "next/image";
-import { Footer } from "../components/Footer";
+import { Shell } from "../components/Shell";
 import { ProfileForm } from "../components/ProfileForm";
 
-export default function Home() {
+export default function Page() {
   const { data: session } = authClient.useSession();
+  const callsign = session?.user?.name?.toUpperCase().slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-neutral-100 max-w-md mx-auto relative pb-[150px]">
-      {/* Header */}
-      <div className="text-white shadow-xl bg-[#50ADCE] w-full h-[135px] flex justify-center">
-        <div className="flex justify-center items-center gap-2">
-          <Image
-            width={60}
-            height={60}
-            alt="image wingsuit"
-            src="/img/wingsuit.svg"
-          />
-          <p className="text-xl">{session?.user?.name ?? "Non connecté"}</p>
+    <Shell callsign={callsign}>
+      <section className="container-x pt-10 pb-16">
+        <div className="flex flex-col gap-3 mb-10">
+          <div className="flex items-center gap-3">
+            <div className="h-[1px] w-10 bg-cyan" />
+            <span className="eyebrow">Pilot · credentials / edit</span>
+          </div>
+          <h1 className="font-display text-4xl lg:text-5xl leading-none">
+            Edit
+            <span className="font-serif italic normal-case text-cyan lowercase"> flight identity</span>
+          </h1>
         </div>
-      </div>
-      <ProfileForm />
-      <Footer />
-    </div>
+
+        <ProfileForm />
+      </section>
+    </Shell>
   );
 }

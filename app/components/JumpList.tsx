@@ -19,25 +19,26 @@ export const JumpList = async () => {
   });
 
   if (jumps.length === 0) {
-    return <p className="text-center mt-10">Aucun saut enregistré pour le moment.</p>;
+    return (
+      <div className="panel hud-corners p-10 md:p-16 text-center">
+        <span className="hud-tl" />
+        <span className="hud-br" />
+        <div className="eyebrow mb-3">Empty log</div>
+        <p className="font-serif italic text-2xl text-bone-dim mb-6">
+          No jumps recorded. The sky is still waiting.
+        </p>
+        <a href="/addJump" className="btn-phos inline-flex">→ Add your first jump</a>
+      </div>
+    );
   }
 
+  const total = jumps.length;
+
   return (
-<div
-  className="
-    h-[200px]
-    [@media(min-height:740px)]:h-[280px]     
-    [@media(min-height:800px)]:h-[350px]
-    [@media(min-height:870px)]:h-[450px]
-    overflow-scroll space-y-4
-  "
->
-  {jumps.map((jump) => (
-    <JumpCard key={jump.id} jump={jump} />
-  ))}
-</div>
-
-
-  
+    <div className="flex flex-col gap-3 drift-stagger">
+      {jumps.map((jump, i) => (
+        <JumpCard key={jump.id} jump={jump} index={total - i} />
+      ))}
+    </div>
   );
 };

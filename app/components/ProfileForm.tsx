@@ -15,19 +15,14 @@ export const ProfileForm = () => {
   const [objectif, setObjectif] = useState("");
   const [brevets, setBrevets] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   const brevetOptions = [
-    "PAC",
-    "A",
-    "B",
+    "PAC", "A", "B",
     "Bi4", "Bi5",
     "B1", "B2", "B3", "B4", "B5",
-    "BPA",
-    "C",
-    "D",
-    "Wingsuit Niveau 1",
-    "Wingsuit Niveau 2",
-    "Wingsuit Niveau 3",
+    "BPA", "C", "D",
+    "Wingsuit Niveau 1", "Wingsuit Niveau 2", "Wingsuit Niveau 3",
     "Voilure Hybride",
   ];
 
@@ -36,7 +31,6 @@ export const ProfileForm = () => {
       try {
         const res = await fetch("/api/profile");
         const data: UserProfile = await res.json();
-
         setParaclub(data.paraclub || "");
         setObjectif(data.objectif || "");
         setBrevets(data.brevets || []);
@@ -51,78 +45,93 @@ export const ProfileForm = () => {
 
   const handleBrevetChange = (brevet: string) => {
     setBrevets((prev) =>
-      prev.includes(brevet)
-        ? prev.filter((b) => b !== brevet)
-        : [...prev, brevet]
+      prev.includes(brevet) ? prev.filter((b) => b !== brevet) : [...prev, brevet]
     );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSaving(true);
 
     const res = await fetch("/api/updateProfile", {
       method: "PUT",
       body: JSON.stringify({ paraclub, brevets, objectif }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
 
-    if (res.ok) {
-      router.push("/userProfile");
-    } else {
-      alert("Erreur lors de l'enregistrement");
-    }
+    setSaving(false);
+    if (res.ok) router.push("/userProfile");
+    else alert("Erreur lors de l'enregistrement");
   };
 
-  if (loading) return <p className="text-center py-10">Chargement du profil...</p>;
+  if (loading) {
+    return (
+      <div className="panel-flat p-10 text-center">
+        <span className="eyebrow">Fetching profile<span className="blink" /></span>
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 space-y-4">
-      <div>
-        <label className="block text-sm font-medium mb-1">Paraclub préféré</label>
-        <input
-          type="text"
-          value={paraclub}
-          onChange={(e) => setParaclub(e.target.value)}
-          className="w-full rounded-md border px-3 py-2"
-          placeholder="Ex: Skydive Maubeuge"
-        />
+    <form onSubmit={handleSubmit} className="panel hud-corners p-6 md:p-10 relative overflow-hidden">
+      <span className="hud-tl" />
+      <span className="hud-br" />
+
+      <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
+        <div>
+          <label className="field-label">Home dropzone</label>
+          <input
+            type="text"
+            value={paraclub}
+            onChange={(e) => setParaclub(e.target.value)}
+            className="field"
+            placeholder="Ex: Skydive Maubeuge"
+          />
+        </div>
+        <div>
+          <label className="field-label">Current objective</label>
+          <input
+            type="text"
+            value={objectif}
+            onChange={(e) => setObjectif(e.target.value)}
+            className="field"
+            placeholder="Ex: Passer la PAC, devenir moniteur…"
+          />
+        </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-1">Brevets</label>
+      <div className="mb-8">
+        <div className="flex items-baseline justify-between mb-3">
+          <label className="field-label mb-0">Brevets held</label>
+          <span className="font-mono text-[10px] text-bone-faint tracking-[0.22em]">
+            {brevets.length} / {brevetOptions.length} SELECTED
+          </span>
+        </div>
         <div className="flex flex-wrap gap-2">
           {brevetOptions.map((brevet) => (
-            <label key={brevet} className="flex items-center gap-1 text-sm">
-              <input
-                type="checkbox"
-                checked={brevets.includes(brevet)}
-                onChange={() => handleBrevetChange(brevet)}
-              />
+            <button
+              type="button"
+              key={brevet}
+              onClick={() => handleBrevetChange(brevet)}
+              className="chip"
+              data-on={brevets.includes(brevet)}
+            >
               {brevet}
-            </label>
+            </button>
           ))}
         </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-1">Objectif</label>
-        <input
-          type="text"
-          value={objectif}
-          onChange={(e) => setObjectif(e.target.value)}
-          className="w-full rounded-md border px-3 py-2"
-          placeholder="Ex: Passer la PAC, devenir moniteur..."
-        />
+      <div className="hairline mb-6" />
+
+      <div className="flex flex-col md:flex-row justify-between gap-4">
+        <span className="eyebrow self-center">Updates are archived instantly</span>
+        <button type="submit" className="btn-phos" disabled={saving}>
+          {saving ? "Saving…" : "→ Save credentials"}
+        </button>
       </div>
 
-      <button
-        type="submit"
-        className="btn btn-primary w-full bg-[#50ADCE] text-white py-2 rounded-md"
-      >
-        Enregistrer
-      </button>
+      <div className="scanline" />
     </form>
   );
 };

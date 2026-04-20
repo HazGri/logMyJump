@@ -23,7 +23,9 @@ export async function GET() {
     },
   });
 
-  const friends = friendships.map((f) => {
+  type FriendshipRow = (typeof friendships)[number];
+
+  const friends = friendships.map((f: FriendshipRow) => {
     const isRequester = f.requesterId === session.user.id;
     const friend = isRequester ? f.receiver : f.requester;
 

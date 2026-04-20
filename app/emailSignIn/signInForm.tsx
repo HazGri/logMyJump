@@ -1,69 +1,60 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
+
 export const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const { data, error } = await authClient.signIn.email(
-      {
-        /**
-         * The user email
-         */
-        email,
-        /**
-         * The user password
-         */
-        password,
-        /**
-         * a url to redirect to after the user verifies their email (optional)
-         */
-        callbackURL: "/dashboard",
-        /**
-         * remember the user session after the browser is closed.
-         * @default true
-         */
-        rememberMe: false,
-      },
-      {
-        //callbacks
-      }
-    );
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/dashboard",
+      rememberMe: false,
+    });
     console.log("SignIn data:", data);
     console.log("SignIn error:", error);
+    setLoading(false);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col  w-full justify-center items-center gap-3"
-    >
-      <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        className="rounded-lg h-11 w-10/12 bg-gray-300 px-3"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      ></input>
-      <label htmlFor="password">Mot de passe</label>
-      <input
-        id="password"
-        className="rounded-lg h-11 w-10/12 px-3 bg-gray-300"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      ></input>
-      <button type="submit" className="btn btn-success  mt-6">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div>
+        <label htmlFor="email" className="field-label">Email / callsign</label>
+        <input
+          id="email"
+          className="field"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="pilot@sky.zone"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="password" className="field-label">Passphrase</label>
+        <input
+          id="password"
+          className="field"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="••••••••••••"
+          required
+        />
+      </div>
+      <button type="submit" className="btn-phos mt-2" disabled={loading}>
         {loading ? (
-          <span className="loading loading-spinner loading-md"></span>
+          <span className="inline-flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full border-2 border-ink-0 border-t-transparent animate-spin" />
+            Connecting
+          </span>
         ) : (
-          "Se connecter"
+          "→ Engage"
         )}
       </button>
     </form>

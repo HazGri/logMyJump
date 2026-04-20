@@ -9,89 +9,76 @@ export const SignUpForm = () => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     const { data, error } = await authClient.signUp.email(
+      { email, password, name, callbackURL: "/dashboard" },
       {
-        email,
-        password,
-        name,
-        callbackURL: "/dashboard",
-      },
-      {
-        onRequest: () => {
-          setLoading(true);
-        },
+        onRequest: () => setLoading(true),
         onSuccess: () => {
           setLoading(false);
-          router.push("/dashboard"); // redirection
+          router.push("/dashboard");
         },
         onError: (ctx) => {
           setLoading(false);
-          alert(ctx.error.message); // gestion d'erreur simple
+          alert(ctx.error.message);
         },
       }
     );
-    console.log("SignIn data:", data);
-    console.log("SignIn error:", error);
+    console.log("SignUp data:", data);
+    console.log("SignUp error:", error);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-md shadow-xl">
-      <h2 className="text-2xl font-semibold mb-4">Créer un compte</h2>
-
-      <div className="mb-4">
-        <label htmlFor="name" className="block mb-1 font-medium">
-          Nom
-        </label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div>
+        <label htmlFor="name" className="field-label">Callsign</label>
         <input
-          type="text"
-          className="w-full border px-3 py-2 rounded"
           id="name"
+          type="text"
+          className="field"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Maverick"
           required
         />
       </div>
-
-      <div className="mb-4">
-        <label htmlFor="email" className="block mb-1 font-medium">
-          Email
-        </label>
+      <div>
+        <label htmlFor="email" className="field-label">Email</label>
         <input
-          type="email"
-          className="w-full border px-3 py-2 rounded"
           id="email"
+          type="email"
+          className="field"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="pilot@sky.zone"
           required
         />
       </div>
-
-      <div className="mb-4">
-        <label htmlFor="password" className="block mb-1 font-medium">
-          Mot de passe
-        </label>
+      <div>
+        <label htmlFor="password" className="field-label">Passphrase</label>
         <input
-          type="password"
-          className="w-full border px-3 py-2 rounded"
           id="password"
+          type="password"
+          className="field"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="••••••••••••"
           required
         />
       </div>
-
-      <button
-        type="submit"
-        disabled={loading}
-        className={`w-full py-2 text-white rounded ${
-          loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
-        }`}
-      >
-        {loading ? <span className="loading loading-spinner loading-md"></span> : "Créer un compte"}
+      <button type="submit" disabled={loading} className="btn-phos mt-2">
+        {loading ? (
+          <span className="inline-flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full border-2 border-ink-0 border-t-transparent animate-spin" />
+            Deploying
+          </span>
+        ) : (
+          "→ Open flight log"
+        )}
       </button>
     </form>
   );
