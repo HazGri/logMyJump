@@ -120,6 +120,9 @@ function StatusRow({ label, value, tone = "default" }: { label: string; value: s
 
 function InstrumentDial() {
   const ticks = Array.from({ length: 36 });
+  // l'aiguille suit l'altitude affichée : 10° par tranche de 1000 m (9000 m = 90°)
+  const altitudeM = 4000;
+  const aiguille = (altitudeM / 1000) * 10;
   return (
     <div className="relative aspect-square max-w-[420px] mx-auto">
       <svg viewBox="0 0 200 200" className="w-full h-full">
@@ -155,7 +158,7 @@ function InstrumentDial() {
         <text x="178" y="104" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">9</text>
         <text x="100" y="188" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">18</text>
         <text x="22" y="104" textAnchor="middle" fill="#a4acbd" fontFamily="JetBrains Mono, monospace" fontSize="8" letterSpacing="2">27</text>
-        <g transform="rotate(-35 100 100)" style={{ transformOrigin: "100px 100px" }}>
+        <g transform={`rotate(${aiguille} 100 100)`}>
           <line x1="100" y1="100" x2="100" y2="30" stroke="#ffb347" strokeWidth="2" />
           <circle cx="100" cy="30" r="3" fill="#ffb347" />
         </g>
