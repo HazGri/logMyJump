@@ -26,8 +26,26 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LogMyJump · Carnet de sauts",
-  description: "Carnet de sauts en parachute, cockpit nocturne",
+  metadataBase: new URL("https://log-my-jump.vercel.app"),
+  title: "LogMyJump · Carnet de sauts pour parachutistes",
+  description:
+    "Carnet de sauts numérique pour parachutistes : enregistre tes sauts, cumule ton altitude, suis ton escadrille et ta progression, de la PAC au wingsuit.",
+  openGraph: {
+    type: "website",
+    siteName: "LogMyJump",
+    locale: "fr_FR",
+    url: "https://log-my-jump.vercel.app",
+    title: "LogMyJump · Carnet de sauts pour parachutistes",
+    description:
+      "Enregistre tes sauts, cumule ton altitude et suis ta progression. De la PAC au wingsuit.",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "LogMyJump" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LogMyJump · Carnet de sauts pour parachutistes",
+    description: "Enregistre tes sauts, cumule ton altitude et suis ta progression.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
